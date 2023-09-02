@@ -48,6 +48,7 @@ def search_attractions():
 		# 處理資料
 		for data in datas:
 			data['images'] = data['images'].split(',')
+			data['address'] = data['address'].replace(' ', '')
 
 		result_dict = {}
 		if len(datas) == 13:
@@ -99,6 +100,7 @@ def attraction_detail(id):
 			return jsonify(error_message), 400
 
 		data['images'] = data['images'].split(',')
+		data['address'] = data['address'].replace(' ', '')
 
 		result_dict = {}
 		result_dict['data'] = data
