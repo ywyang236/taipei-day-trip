@@ -7,10 +7,11 @@ import os
 current_directory = os.getcwd()
 
 # 取得檔案路徑
-file_path = os.path.join(current_directory, 'taipei-attractions.json')
+file_path = os.path.join(current_directory,  'data', 'taipei-attractions.json')
 
 # 把 json 轉成字典
 with open(file_path, 'r', encoding='utf-8') as json_file:
+
     data = json.load(json_file)
 
     attractions = data['result']['results']
