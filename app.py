@@ -3,6 +3,11 @@ app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
+# blueprints
+from api.attraction import attraction_app
+
+app.register_blueprint(attraction_app)
+
 # Pages
 @app.route("/")
 def index():
@@ -17,6 +22,5 @@ def booking():
 def thankyou():
 	return render_template("thankyou.html")
 
-app.run(host="0.0.0.0", port=3000)
-
-# revise protection rule to main branch
+if __name__ == "__main__":
+	app.run(host="0.0.0.0", port=3000)
