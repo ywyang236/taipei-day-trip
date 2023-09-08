@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北一日遊</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+</head>
+
+<body>
+    <div class="navigation">
+        <div class="navigation_container">
+            <div class="navigation_left">
+                <h2>台北一日遊</h2>
+            </div>
+            <div class="navigation_right">
+                <button class="navigation_button">預定行程</button>
+                <button class="navigation_button">登入/註冊</button>
+            </div>
+        </div>
+    </div>
+    <div class="welcome">
+        <div class="welcome_container">
+            <div class="slogan_up">
+                <h1>輕鬆享受台北一日悠閒</h1>
+            </div>
+            <div class="slogan_down">
+                <p>探索每個角落，體驗城市的深度旅遊行程</p>
+            </div>
+            <div class="search_bar">
+                <form id="search-bar" autocomplete="off">
+                    <input type="search" placeholder="輸入景點名稱查詢" id="input_area"><button type="submit"><img
+                            src="/static/images/icon_search.svg"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="main_container">
+            <div class="mrt_list_container">
+                <div class="mrt_list_button_left" onclick="moveLeft()">
+                </div>
+                <div class="mrt_list_content" id="mrt-list-content">
+                </div>
+                <div class="mrt_list_button_right" onclick="moveRight()">
+                </div>
+            </div>
+        </div>
+        <div class="attraction_container" id="attraction-container">
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- <div class="attraction_container">
+                <div class="attraction_per_grid">
+                    <div class="attraction_image_area">
+                        <img src="" class="attraction_image">
+                        <div class="attraction_name">
+                            <div class="attraction_name_text"></div>
+                        </div>
+                    </div>
+                    <div class="attraction_information">
+                        <div class="attraction_mrt"></div>
+                        <div class="attraction_category"></div>
+                    </div>
+                </div>
+            </div> -->
+    </div>
+    </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <p>COPYRIGHT &copy; 2021 台北一日遊</p>
+    </footer>
+    <!-- footer end -->
+    <script src="{{ url_for('static', filename='javascripts/index.js') }}"></script>
+</body>
+
+</html>

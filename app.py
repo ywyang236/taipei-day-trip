@@ -1,7 +1,9 @@
 from flask import *
 app=Flask(__name__)
-app.config["JSON_AS_ASCII"]=False
+# app.config["JSON_AS_ASCII"]=False
+app.json.ensure_ascii = False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
+
 
 # blueprints
 from api.attraction import attraction_app
