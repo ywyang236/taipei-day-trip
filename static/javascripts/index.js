@@ -172,7 +172,7 @@ function moveRight() {
 }
 
 
-//渲染景點到前端
+// 渲染景點到前端
 document.addEventListener("DOMContentLoaded", function () {
     fetchAttractions(0);  // 預設從第0頁開始載入
 });
@@ -213,6 +213,11 @@ function renderAttractions(attractions) {
     attractions.forEach(attraction => {
         const attractionGrid = document.createElement("div");
         attractionGrid.className = "attraction_per_grid";
+
+        // 點擊景點卡片時，跳轉到景點頁面
+        attractionGrid.addEventListener('click', function () {
+            window.location.href = `/attraction/${attraction.id}`;
+        });
 
         const attractionImageArea = document.createElement("div");
         attractionImageArea.className = "attraction_image_area";
