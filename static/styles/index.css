@@ -5,7 +5,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: Noto Sans TC;
-    /* border: solid 1px black; */
+    /* outline: solid 1px black; */
     /* background-color: red; */
 }
 
@@ -39,6 +39,11 @@ h2 {
     line-height: 34px;
     color: #489;
     font-weight: 700;
+}
+
+.homepage-link {
+    text-decoration: none;
+    color: inherit;
 }
 
 .navigation {
@@ -238,7 +243,7 @@ h2 {
     width: 32px;
     height: 32px;
     border-style: hidden;
-    background-color: #ffffff;
+    background-color: transparent;
     text-decoration: none;
     cursor: pointer;
     margin-right: 15px;
@@ -321,6 +326,7 @@ h2 {
     border-radius: 5px;
     width: 100%;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .attraction_image_area {
@@ -352,6 +358,8 @@ h2 {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .attraction_name_text {
