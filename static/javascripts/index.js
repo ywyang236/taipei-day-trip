@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 當頁面滾動到最底部時，載入更多資料
     const observerOptions = {
         root: null,
-        rootMargin: "0px",
+        rootMargin: '0px',
         threshold: 0.1
     };
 
@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }, observerOptions);
 
-    const loadMoreDiv = document.createElement("div");
-    loadMoreDiv.className = "load-more-div";
+    const loadMoreDiv = document.createElement('div');
+    loadMoreDiv.className = 'load-more-div';
     document.body.appendChild(loadMoreDiv);
     attractionObserver.observe(loadMoreDiv);
 });
@@ -138,20 +138,20 @@ function fetchAttractionsByKeyword(url) {
             } else {
                 // 如果沒有找到結果，顯示相應的提示
                 const noResultsDiv = document.createElement('div');
-                noResultsDiv.innerHTML = "沒有找到相關景點";
+                noResultsDiv.innerHTML = '沒有找到相關景點';
                 document.querySelector('.attraction_container').appendChild(noResultsDiv);
             }
 
             nextPage = data.nextPage;
         })
         .catch(error => {
-            console.error("Error fetching attractions by keyword:", error);
-            alert("伺服器取得資料時發生錯誤，請稍後再試");
+            console.error('Error fetching attractions by keyword:', error);
+            alert('伺服器取得資料時發生錯誤，請稍後再試');
         });
 }
 
 // 搜尋表單的事件監聽器
-document.getElementById("search-bar").addEventListener('submit', function (e) {
+document.getElementById('search-bar').addEventListener('submit', function (e) {
     e.preventDefault();  // 防止表單的默認提交行為
     search();
 });
@@ -160,7 +160,7 @@ document.getElementById("search-bar").addEventListener('submit', function (e) {
 
 
 // 按鈕左右移動
-let listContent = document.getElementById("mrt-list-content");
+let listContent = document.getElementById('mrt-list-content');
 let scrollAmount = 300;
 
 function moveLeft() {
@@ -173,7 +173,7 @@ function moveRight() {
 
 
 // 渲染景點到前端
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
     fetchAttractions(0);  // 預設從第0頁開始載入
 });
 
@@ -202,52 +202,52 @@ function fetchAttractions(page) {
             nextPage = data.nextPage; // 儲存下一頁的資訊
         })
         .catch(error => {
-            console.error("Error fetching attractions:", error);
-            alert("伺服器取得資料時發生錯誤，請稍後再試");
+            console.error('Error fetching attractions:', error);
+            alert('伺服器取得資料時發生錯誤，請稍後再試');
         });
 }
 
 function renderAttractions(attractions) {
-    const attractionContainer = document.getElementById("attraction-container");
+    const attractionContainer = document.getElementById('attraction-container');
 
     attractions.forEach(attraction => {
-        const attractionGrid = document.createElement("div");
-        attractionGrid.className = "attraction_per_grid";
+        const attractionGrid = document.createElement('div');
+        attractionGrid.className = 'attraction_per_grid';
 
         // 點擊景點卡片時，跳轉到景點頁面
         attractionGrid.addEventListener('click', function () {
             window.location.href = `/attraction/${attraction.id}`;
         });
 
-        const attractionImageArea = document.createElement("div");
-        attractionImageArea.className = "attraction_image_area";
+        const attractionImageArea = document.createElement('div');
+        attractionImageArea.className = 'attraction_image_area';
         attractionGrid.appendChild(attractionImageArea);
 
-        const attractionImage = document.createElement("img");
-        attractionImage.className = "attraction_image";
+        const attractionImage = document.createElement('img');
+        attractionImage.className = 'attraction_image';
         attractionImage.src = attraction.images[0];  // 用第一張圖片
         attractionImageArea.appendChild(attractionImage);
 
-        const attractionName = document.createElement("div");
-        attractionName.className = "attraction_name";
+        const attractionName = document.createElement('div');
+        attractionName.className = 'attraction_name';
         attractionImageArea.appendChild(attractionName);
 
-        const attractionNameText = document.createElement("div");
-        attractionNameText.className = "attraction_name_text";
+        const attractionNameText = document.createElement('div');
+        attractionNameText.className = 'attraction_name_text';
         attractionNameText.textContent = attraction.name;
         attractionName.appendChild(attractionNameText);
 
-        const attractionInformation = document.createElement("div");
-        attractionInformation.className = "attraction_information";
+        const attractionInformation = document.createElement('div');
+        attractionInformation.className = 'attraction_information';
         attractionGrid.appendChild(attractionInformation);
 
-        const attractionMRT = document.createElement("div");
-        attractionMRT.className = "attraction_mrt";
+        const attractionMRT = document.createElement('div');
+        attractionMRT.className = 'attraction_mrt';
         attractionMRT.textContent = attraction.mrt;
         attractionInformation.appendChild(attractionMRT);
 
-        const attractionCategory = document.createElement("div");
-        attractionCategory.className = "attraction_category";
+        const attractionCategory = document.createElement('div');
+        attractionCategory.className = 'attraction_category';
         attractionCategory.textContent = attraction.category;
         attractionInformation.appendChild(attractionCategory);
 

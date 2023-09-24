@@ -1,89 +1,3 @@
-@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: Noto Sans TC;
-    /* border: solid 1px black; */
-    /* background-color: red; */
-}
-
-body,
-h1,
-h2,
-.slogan_down,
-.navigation_button {
-    font-style: normal;
-}
-
-body {
-    /* display: flex;
-    flex-direction: column;
-    position: relative; */
-    font-size: 16px;
-    font-weight: 400;
-    line-height: normal;
-    color: #666;
-}
-
-h1 {
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 24px;
-    color: #F8F8F8;
-}
-
-h2 {
-    font-size: 30px;
-    line-height: 34px;
-    color: #489;
-    font-weight: 700;
-}
-
-.navigation {
-    background-color: white;
-    border-bottom: 1px solid #e5e5e5;
-    width: 100vw;
-    height: 54px;
-    position: fixed;
-    top: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-
-}
-
-.navigation_container {
-    width: 92%;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navigation_left,
-.navigation_right {
-    text-decoration: none;
-    position: relative;
-    flex-shrink: 0;
-}
-
-.navigation_button {
-    border-style: hidden;
-    background-color: white;
-    color: #666666;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 13.3px;
-    padding: 10px;
-    cursor: pointer;
-    text-decoration: none;
-}
-
 .main {
     width: 100vw;
     margin-top: 54px;
@@ -150,6 +64,7 @@ h2 {
     object-position: center;
     border-radius: 5px;
     z-index: 0;
+    transition: opacity 1s ease-in-out;
 }
 
 @media (max-width:600px) {
@@ -170,7 +85,6 @@ img {
     transform: translate(-50%);
     display: flex;
     gap: 12px;
-    /* z-index: 20; */
 }
 
 .dot {
@@ -188,7 +102,7 @@ img {
 }
 
 .album_button_left {
-    background-image: url(/static/images/gray_left.svg);
+    background-image: url('/static/images/gray_left.svg');
     background-size: cover;
     width: 36px;
     height: 36px;
@@ -322,7 +236,7 @@ img {
     display: flex;
     align-items: center;
     padding: 5px 10px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     width: 193px;
     position: relative;
 }
@@ -344,17 +258,39 @@ img {
     line-height: 13.3px;
 }
 
+/* chrome */
 input[type="date"] {
     background-color: transparent;
 }
 
+
+input[type="date"]::-webkit- {}
+
 input[type="date"]::-webkit-calendar-picker-indicator {
-    /* background-color: blue; */
     background-image: url('/static/images/date_icon.svg');
     width: 24px;
     height: 24px;
     cursor: pointer;
 }
+
+/* firefox */
+/* input[type="date"] {
+    background-image: url('/static/images/date_icon.svg');
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: 24px 24px;
+} */
+
+/* input[type="date"] {
+    background: url('/static/images/date_icon.svg');
+    background-repeat: no-repeat;
+    color: #1850e0;
+    background-color: rgb(255, 219, 76);
+} */
+
+/* input[type="date"]:-moz-calendar-picker-indicator {
+    color: red;
+} */
 
 .booking_time {
     height: 22px;
@@ -415,6 +351,17 @@ input[type="radio"]:checked+label::before {
     font-weight: 400;
     line-height: 16px;
 }
+
+#booking_button:hover {
+    background-color: #5bb2c8;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#booking_button:active {
+    background-color: #39858a;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
 
 .line_container {
     width: 92%;
@@ -504,15 +451,4 @@ hr {
     .information_transport_text {
         padding-bottom: 94px;
     }
-}
-
-
-footer {
-    background-color: #757575;
-    color: white;
-    display: flex;
-    height: 104px;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
 }

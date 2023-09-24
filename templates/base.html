@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北一日遊</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
+
+    <link rel="stylesheet" href="{{ css_link }}">
+
+</head>
+
+<body>
+    <div class="navigation">
+        <div class="navigation_container">
+            <div class="navigation_left">
+                <h2><a href="/" class="homepage-link">台北一日遊</a></h2>
+            </div>
+            <div class="navigation_right">
+                <button class="navigation_button">預定行程</button>
+                <button class="navigation_button signin_button">登入/註冊</button>
+                <button class="navigation_button signout_button">登出系統</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 會員系統 -->
+    <div class="dialog_section">
+
+        <!-- 登入區 -->
+        <div class="dialog_signin_section">
+            <div class="dialog_bar"></div>
+            <div class="dialog_close_signin_button"></div>
+            <div class="dialog_title">登入會員帳號</div>
+
+            <form class="signin_form">
+                <input type="email" placeholder="請輸入電子信箱" class="user_input" id="signin-email">
+                <input type="password" placeholder="請輸入密碼" class="user_input" id="signin-password">
+                <button type="submit" class="signin_submit" id="signin-submit">登入帳戶</button>
+            </form>
+
+            <div class="dialog_signin_message"></div>
+            <div class="dialog_signup_prompt">還沒有帳戶？點此註冊</div>
+        </div>
+
+        <!-- 註冊區 -->
+        <div class="dialog_signup_section">
+            <div class="dialog_bar"></div>
+            <div class="dialog_close_signup_button"></div>
+            <div class="dialog_title">註冊會員帳號</div>
+
+            <form class="signup_form">
+                <input type="text" placeholder="請輸入姓名" class="signup_input" id="signup-name">
+                <input type="email" placeholder="請輸入電子信箱" class="signup_input" id="signup-email">
+                <input type="password" placeholder="請輸入密碼(至少 8 個字元)" class="signup_input" id="signup-password">
+                <button type="submit" class="signup_submit" id="signup-submit">註冊新帳戶</button>
+            </form>
+
+            <div class="dialog_signup_message"></div>
+            <div class="dialog_signin_prompt">已經有帳戶了？點此登入</div>
+        </div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <p>COPYRIGHT &copy; 2021 台北一日遊</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='javascripts/base.js') }}"></script>
+
+    <script src="{{ js_link }}"></script>
+</body>
+
+</html>

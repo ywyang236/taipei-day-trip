@@ -39,7 +39,7 @@ function renderAttractionData(data) {
         let imgElement = document.createElement('img');
         imgElement.src = imgUrl;
         imgElement.classList.add('slide_image');
-        imgElement.preload = "auto";
+        imgElement.preload = 'auto';
         imageContainer.appendChild(imgElement);
 
         // 為每張圖片添加 dot
@@ -73,16 +73,16 @@ function showSlide(n) {
 
     // 隱藏所有圖片
     for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+        slides[i].style.display = 'none';
     }
 
     // 取消所有 active dots
     for (let i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
+        dots[i].className = dots[i].className.replace(' active', '');
     }
 
-    slides[slideIndex].style.display = "block";
-    dots[slideIndex].className += " active";
+    slides[slideIndex].style.display = 'block';
+    dots[slideIndex].className += ' active';
 }
 
 function nextPage(n) {
@@ -94,7 +94,7 @@ function currentSlide(n) {
 }
 
 // 選擇時間
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
     // 導覽費用
     let feeElement = document.querySelector('.booking_fee > span:last-child');
 
@@ -105,14 +105,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // 上半天的按鈕
     morningRadio.addEventListener('change', function () {
         if (morningRadio.checked) {
-            feeElement.textContent = "新台幣 2000 元";
+            feeElement.textContent = '新台幣 2000 元';
         }
     });
 
     // 下半天的按鈕
     afternoonRadio.addEventListener('change', function () {
         if (afternoonRadio.checked) {
-            feeElement.textContent = "新台幣 2500 元";
+            feeElement.textContent = '新台幣 2500 元';
         }
     });
 });
