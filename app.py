@@ -5,11 +5,12 @@ app.config["TEMPLATES_AUTO_RELOAD"]=True
 
 
 # blueprints
-from api.attraction import attraction_app
 from api.member import member_app
+from api.attraction import attraction_app
 
-app.register_blueprint(attraction_app)
+
 app.register_blueprint(member_app)
+app.register_blueprint(attraction_app)
 
 # Pages
 @app.route("/")

@@ -20,8 +20,43 @@ let dialogSignupMessage = document.querySelector('.dialog_signup_message');
 // 登出
 let signoutButton = document.querySelector('.signout_button');
 
+// 檢查會員登入狀態
+// 頁面載入時，檢查使用者是否已登入
+const checkUserLoginStatus = function () {
+    // 如果 local storage 有 token，代表使用者已登入
+    if (localStorage.getItem('token')) {
+        fetch('/api/user/auth', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+            .then(response => response.json())
+            .then(result => {
+                if (!result.error) {
+                    // 顯示登出按鈕，隱藏登入、註冊按鈕
+                    signoutButton.style.display = 'flex';
+                    signinButton.style.display = 'none';
+                } else {
+                    // Token 無效，清除 localStorage 中的 Token
+                    localStorage.removeItem('token');
+                    signinButton.style.display = 'flex';
+                    signoutButton.style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    } else {
+        // 沒有 Token，顯示登入按鈕
+        signinButton.style.display = 'flex';
+        signoutButton.style.display = 'none';
+    }
+};
 
-
+document.addEventListener('DOMContentLoaded', function () {
+    checkUserLoginStatus();
+});
 
 // 「登入」按鈕的點擊事件
 signinButton.addEventListener('click', function () {
@@ -93,21 +128,6 @@ dialogSigninPrompt.addEventListener('click', function () {
     dialogSigninSection.style.display = 'flex';
 });
 
-// 檢查會員登入狀態
-// 頁面載入時，檢查使用者是否已登入
-const checkUserLoginStatus = async () => {
-    // 如果 local storage 有 token，代表使用者已登入
-    if (localStorage.getItem('token')) {
-        // 顯示登出按鈕，隱藏登入、註冊按鈕
-        signoutButton.style.display = 'flex';
-        signinButton.style.display = 'none';
-    }
-}
-
-// 當頁面載入時，調用 checkUserLoginStatus 函數檢查登入狀態
-window.onload = checkUserLoginStatus;
-
-
 // 註冊系統
 // 點擊「註冊」時，檢查是否有未輸入的資訊若有，阻止表單送出
 document.getElementById("signup-submit").addEventListener("click", function (event) {
@@ -177,6 +197,11 @@ document.getElementById("signup-submit").addEventListener("click", function (eve
 document.getElementById("signin-submit").addEventListener("click", function (event) {
     event.preventDefault();
 
+    // 檢查使用者是否已登入，若已登入，阻止表單送出
+    if (localStorage.getItem('token')) {
+        return;
+    }
+
     // 取得使用者輸入的資訊
     let email = document.getElementById("signin-email").value;
     let password = document.getElementById("signin-password").value;
@@ -212,6 +237,12 @@ document.getElementById("signin-submit").addEventListener("click", function (eve
                 // 登入成功，dialogSigninMessage 顯示文字訊息「登入成功」
                 dialogSigninMessage.style.display = 'flex';
                 dialogSigninMessage.innerText = '登入成功';
+
+                // 檢查使用者是否已登入，若已登入，隱藏登入按鈕，顯示登出按鈕
+                if (localStorage.getItem('token')) {
+                    signinButton.style.display = 'none';
+                    signoutButton.style.display = 'flex';
+                }
 
                 // 重新載入相同頁面，讓頁面反應最新的狀態
                 location.reload();
