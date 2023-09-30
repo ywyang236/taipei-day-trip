@@ -1,0 +1,324 @@
+.main {
+    width: 100vw;
+    margin-top: 94px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main__container {
+    max-width: 1200px;
+    width: 92%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media (max-width:600px) {
+    .main__container {
+        width: 100%;
+        padding: 0px 10px;
+    }
+}
+
+
+.main__separator {
+    width: 100%;
+    height: 10px;
+    max-width: 1200px;
+    border-width: 0;
+    box-sizing: border-box;
+    margin: 40px 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #E8E8E8;
+}
+
+.order-process__header {
+    max-width: 1000px;
+    width: 100%;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 16px;
+}
+
+.order-process__itinerary {
+    max-width: 980px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-process__itinerary-spot {
+    max-width: 980px;
+    width: 100%;
+    display: grid;
+    gap: 0px 22px;
+    margin-top: 30px;
+    position: relative;
+}
+
+@media (min-width: 1024px) {
+    .order-process__itinerary-spot {
+        grid-template-columns: 0.3844fr 1fr;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .order-process__itinerary-spot {
+        grid-template-columns: 0.3844fr 1fr;
+    }
+}
+
+@media (max-width:600px) {
+    .order-process__itinerary-spot {
+        grid-template-columns: 1fr;
+    }
+}
+
+.order-process__itinerary-spot-delete-button {
+    background-image: url(/static/images/delete.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    top: 0px;
+    right: 0px;
+}
+
+@media (max-width:600px) {
+    .order-process__itinerary-spot-delete-button {
+        top: 100%;
+    }
+}
+
+.order-process__itinerary-spot-left {}
+
+.order-process__itinerary-spot-photo-container {}
+
+.order-process__itinerary-spot-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.order-process__itinerary-spot-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    padding: 0 8px;
+}
+
+@media (max-width:600px) {
+    .order-process__itinerary-spot-photo img {
+        padding: 28px 0;
+    }
+}
+
+#order-process__itinerary-spot-photo {}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.order-process__itinerary-spot-right {
+    max-width: 692px;
+    width: 100%;
+}
+
+.order-process__itinerary-spot-title {
+    color: #489;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 13.3px;
+    height: 24px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.order-process__itinerary-spot-date-container,
+.order-process__itinerary-spot-time-container,
+.order-process__itinerary-spot-cost-container,
+.order-process__itinerary-spot-address-container,
+.order-process__confirmation-money-container {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+
+}
+
+.order-process__itinerary-spot-date-title,
+.order-process__itinerary-spot-time-title,
+.order-process__itinerary-spot-cost-title,
+.order-process__itinerary-spot-address-title,
+.order-process__confirmation-money-title,
+.order-process__confirmation-money {
+    color: #666;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 13.3px;
+    height: 24px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.order-process__itinerary-spot-name,
+.order-process__itinerary-spot-date,
+.order-process__itinerary-spot-time,
+.order-process__itinerary-spot-cost,
+.order-process__itinerary-spot-address {
+    color: #666;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 13.3px;
+    height: 24px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+
+.order-process__contact {
+    max-width: 980px;
+    width: 100%;
+}
+
+.order-process__contact-title,
+.order-process__checkout-title {
+    color: #666;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 16px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.order-process__contact-subtitle,
+.order-process__checkout-subtitle {
+    color: #666;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 13.3px;
+}
+
+.order-process__contact-name,
+.order-process__contact-email,
+.order-process__contact-phone {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    height: 38px;
+    margin-bottom: 15px;
+}
+
+.order-process__contact-input,
+.order-process__checkout-input {
+    width: 200px;
+    height: 38px;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 13.3px;
+    color: #000000;
+}
+
+.order-process__contact-input:focus,
+.order-process__checkout-input:focus {
+    outline: none !important;
+    border: 2px solid #448899;
+}
+
+.order-process__contact-remark {
+    color: #666;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.order-process__checkout {
+    max-width: 980px;
+    width: 100%;
+}
+
+.order-process__checkout-card {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin-bottom: 15px;
+}
+
+.order-process__confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-width: 980px;
+    width: 100%;
+}
+
+.order-process__confirmation-title {
+    margin-bottom: 22px;
+}
+
+.order-process__confirmation-text {}
+
+.order-process__confirmation-button {
+    padding: 10px 20px;
+    background-color: #448899;
+    border-radius: 5px;
+    border-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.15s ease-in-out;
+    color: #FFFFFF;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    margin-bottom: 22px;
+}
+
+.order-process__confirmation-button:hover {
+    background-color: #5bb2c8;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.order-process__confirmation-button:active {
+    background-color: #39858a;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.order-process__itinerary-no-booking-message {
+    color: #666;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 13.3px;
+    height: 24px;
+    margin-top: 31px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}

@@ -1,16 +1,19 @@
 from flask import *
+from api.member import member_app
+from api.attraction import attraction_app
+from api.booking import booking_app
+
+
 app=Flask(__name__)
 app.json.ensure_ascii = False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
 
 # blueprints
-from api.member import member_app
-from api.attraction import attraction_app
-
-
 app.register_blueprint(member_app)
 app.register_blueprint(attraction_app)
+app.register_blueprint(booking_app)
+
 
 # Pages
 @app.route("/")

@@ -116,3 +116,78 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// 建立預約資料
+createBooking = () => {
+    let date = document.getElementById("date_input").value;
+
+    // 如果 date 為空，則跳出提示訊息   
+    if (date === '') {
+        alert('請選擇日期');
+        return;
+    }
+
+    // 如果 date 小於今天，則跳出提示訊息
+    let today = new Date();
+    let selectedDate = new Date(date);
+    if (selectedDate < today) {
+        alert('日期不可小於今天');
+        return;
+    }
+
+    let time = document.querySelector('input[name="time_choice"]:checked').value;
+
+    let path = window.location.pathname;
+    let attractionId = path.split("/")[2];
+
+    let getPriceByTime = (selectedTime) => {
+        return selectedTime === 'morning' ? 2000 : 2500;
+    };
+
+    let price = getPriceByTime(time);
+
+    let data = {
+        attractionId: attractionId,
+        date: date,
+        time: time,
+        price: price
+    };
+
+    fetch('/api/booking', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(result => {
+            if (result.ok) {
+                window.location.href = "/booking";
+            } else {
+                alert(result.message);
+            }
+        })
+
+        .catch(error => {
+            console.error('Error:', error);
+            alert('發生錯誤，請稍後再試。');
+        });
+};
+
+// 點擊「開始預約行程」按鈕，建立預約資料，跳轉到預定行程頁面
+document.getElementById("booking_start_button").addEventListener("click", function (event) {
+    event.preventDefault(); // 阻止預設的表單提交行為
+
+    // 如果使用者未登入，跳出登入視窗
+    if (!localStorage.getItem('token')) {
+        dialogSection.style.display = 'flex';
+        dialogSigninSection.style.display = 'flex';
+        return;
+    } else {
+        // 如果使用者已登入，則建立預約資料 
+        createBooking();
+    }
+});
+
