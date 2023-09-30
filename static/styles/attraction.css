@@ -273,25 +273,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-/* firefox */
-/* input[type="date"] {
-    background-image: url('/static/images/date_icon.svg');
-    background-repeat: no-repeat;
-    background-color: transparent;
-    background-size: 24px 24px;
-} */
-
-/* input[type="date"] {
-    background: url('/static/images/date_icon.svg');
-    background-repeat: no-repeat;
-    color: #1850e0;
-    background-color: rgb(255, 219, 76);
-} */
-
-/* input[type="date"]:-moz-calendar-picker-indicator {
-    color: red;
-} */
-
 .booking_time {
     height: 22px;
     display: flex;
@@ -335,7 +316,7 @@ input[type="radio"]:checked+label::before {
     margin-bottom: 25px;
 }
 
-#booking_button {
+#booking_start_button {
     padding: 10px 20px;
     background-color: #448899;
     border-radius: 5px;
@@ -352,12 +333,12 @@ input[type="radio"]:checked+label::before {
     line-height: 16px;
 }
 
-#booking_button:hover {
+#booking_start_button:hover {
     background-color: #5bb2c8;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
-#booking_button:active {
+#booking_start_button:active {
     background-color: #39858a;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }

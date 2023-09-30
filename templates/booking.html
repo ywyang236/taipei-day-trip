@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="main">
+    <div class="main__container">
+        <div class="order-process__header">
+            <span>您好，</span><span id="user_name_display"></span><span>，待預定的行程如下：</span>
+        </div>
+        <div class="order-process__itinerary">
+            <div class="order-process__itinerary-spot">
+                <div class="order-process__itinerary-spot-delete-button"></div>
+                <div class="order-process__itinerary-spot-left">
+                    <img class="order-process__itinerary-spot-photo" src="https://picsum.photos/250/200">
+                </div>
+                <div class="order-process__itinerary-spot-right">
+                    <div class="order-process__itinerary-spot-name"></div>
+                    <div class="order-process__itinerary-spot-date-container">
+                        <span class="order-process__itinerary-spot-date-title">日期：</span>
+                        <span class="order-process__itinerary-spot-date"></span>
+                    </div>
+                    <div class="order-process__itinerary-spot-time-container">
+                        <span class="order-process__itinerary-spot-time-title">時間：</span>
+                        <span class="order-process__itinerary-spot-time"></span>
+                    </div>
+                    <div class="order-process__itinerary-spot-cost-container">
+                        <span class="order-process__itinerary-spot-cost-title">費用：</span>
+                        <span class="order-process__itinerary-spot-cost"></span>
+                    </div>
+                    <div class="order-process__itinerary-spot-address-container">
+                        <span class="order-process__itinerary-spot-address-title">地點：</span>
+                        <span class="order-process__itinerary-spot-address"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main__separator">
+            <hr>
+        </div>
+        <div class="order-process__contact">
+            <div class="order-process__contact-title">聯絡資訊</div>
+            <div class="order-process__contact-name">
+                <div class="order-process__contact-subtitle">聯絡姓名：</div>
+                <input type="text" class="order-process__contact-input">
+            </div>
+            <div class="order-process__contact-email">
+                <div class="order-process__contact-subtitle">連絡信箱：</div>
+                <input type="email" class="order-process__contact-input">
+            </div>
+            <div class="order-process__contact-phone">
+                <div class="order-process__contact-subtitle">手機號碼：</div>
+                <input type="text" class="order-process__contact-input">
+            </div>
+            <div class="order-process__contact-remark">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</div>
+        </div>
+        <div class="main__separator">
+            <hr>
+        </div>
+        <div class="order-process__checkout">
+            <div class="order-process__checkout-title">信用卡付款資訊</div>
+            <div class="order-process__checkout-card">
+                <div class="order-process__checkout-subtitle">卡片號碼：</div>
+                <input type="tel" class="order-process__checkout-input" id="creditCardInput"
+                    placeholder="**** **** **** ****" maxlength="19" pattern="\d{4} \d{4} \d{4} \d{4}">
+
+            </div>
+            <div class="order-process__checkout-card">
+                <div class="order-process__checkout-subtitle">有效日期：</div>
+                <input type="text" placeholder="MM/YY" class="order-process__checkout-input">
+            </div>
+            <div class="order-process__checkout-card">
+                <div class="order-process__checkout-subtitle">驗證密碼：</div>
+                <input type="text" placeholder="CVV" class="order-process__checkout-input">
+            </div>
+        </div>
+        <div class="main__separator">
+            <hr>
+        </div>
+        <div class="order-process__confirmation">
+            <div class="order-process__confirmation-money-container">
+                <div class="order-process__confirmation-money">總價：</div>
+            </div>
+            <button class="order-process__confirmation-button">確認訂購並付款</button>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% set css_link = url_for('static', filename='styles/booking.css') %}
+{% set js_link = url_for('static', filename='javascripts/booking.js') %}

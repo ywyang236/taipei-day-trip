@@ -1,4 +1,9 @@
 .DS_Store
+DS_Store
+back.js
+back.py
+back.css
+back.html
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

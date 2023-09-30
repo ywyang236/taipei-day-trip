@@ -1,3 +1,9 @@
+// 頁面載入動畫
+window.addEventListener("load", function () {
+    let loadingScreen = document.getElementById("loadingScreen");
+    loadingScreen.style.display = "none";
+});
+
 // 選取「登入」按鈕
 let signinButton = document.querySelector('.signin_button');
 let dialogSigninPrompt = document.querySelector('.dialog_signin_prompt')
@@ -5,8 +11,13 @@ let dialogSigninPrompt = document.querySelector('.dialog_signin_prompt')
 // 選取「註冊」按鈕
 let dialogSignupPrompt = document.querySelector('.dialog_signup_prompt');
 
-// 登入對話框
+// 選取「預約行程」按鈕
+let bookingButton = document.querySelector('.booking_button');
+
+// 一般訊息對話框
 let dialogSection = document.querySelector('.dialog_section');
+
+// 登入對話框
 let dialogSigninSection = document.querySelector('.dialog_signin_section');
 let closeSigninButton = document.querySelector('.dialog_close_signin_button');
 let closeSignupButton = document.querySelector('.dialog_close_signup_button');
@@ -264,6 +275,25 @@ signoutButton.addEventListener('click', function () {
     // 清空 localStorage
     localStorage.clear();
 
-    // 重新載入頁面
-    location.reload();
+    // 檢查當前頁面的路徑
+    if (window.location.pathname === '/booking') {
+        // 如果在 /booking 的頁面，重定向到首頁
+        window.location.href = '/';
+    } else {
+        // 在其他頁面，只需重新載入當前頁面或進行其他操作
+        location.reload();
+    }
 });
+
+// 點擊「預約行程」按鈕時，頁面跳轉到 booking.html
+bookingButton.addEventListener('click', function () {
+    // 如果使用者未登入，跳出登入視窗
+    if (!localStorage.getItem('token')) {
+        dialogSection.style.display = 'flex';
+        dialogSigninSection.style.display = 'flex';
+        return;
+    } else {
+        window.location.href = '/booking';
+    }
+});
+
