@@ -4,8 +4,8 @@ const token = localStorage.getItem('token');
 // 取得使用者姓名，並顯示在畫面上
 document.addEventListener('DOMContentLoaded', function () {
     if (!token) {
-        console.error("Token not found in localStorage.");
-        throw new Error("Token not found in localStorage.");
+        window.location.href = "/";
+        return;
     }
 
     fetch("/api/user/auth", {
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
         .then(response => {
             if (!response.ok) {
+                window.location.href = "/";
                 throw new Error("Network response was not ok");
             }
             return response.json();

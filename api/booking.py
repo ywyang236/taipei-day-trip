@@ -225,3 +225,4 @@ def delete_booking(booking_id):
             cursor.close()
         if connection:
             connection.close()
+
