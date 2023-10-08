@@ -81,6 +81,7 @@ def attraction_detail(id):
 	try:
 		connection = connection_pool.get_connection()
 		cursor = connection.cursor(dictionary=True)
+		cursor.execute("SET SESSION group_concat_max_len = 1000000")
 
 		# 取得景點資料
 		select_data = (

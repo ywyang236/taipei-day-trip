@@ -1,0 +1,24 @@
+{
+    "prime": "前端從第三方金流 TapPay 取得的交易碼",
+    "order": {
+        "total_price": 2000,
+        "trip": [
+            {
+                "attraction": {
+                    "id": 25,
+                    "name": "台北101",
+                    "address": "臺北市信義區信義路5段7號",
+                    "image": "https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000363.jpg"
+                },
+                "date": "2023-10-09",
+                "time": "morning",
+                "price": 2000
+            }
+        ],
+        "contact": {
+            "name": "楊于葳",
+            "email": "BBN@wehelp.com",
+            "phone": "0912345678"
+        }
+    }
+}

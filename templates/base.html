@@ -31,6 +31,7 @@
                 <h2><a href="/" class="homepage_link">台北一日遊</a></h2>
             </div>
             <div class="navigation_right">
+                <button class="navigation_button historical_order_button">訂單查詢</button>
                 <button class="navigation_button booking_button">預定行程</button>
                 <button class="navigation_button signin_button">登入/註冊</button>
                 <button class="navigation_button signout_button">登出系統</button>
@@ -80,6 +81,8 @@
     <footer>
         <p>COPYRIGHT &copy; 2021 台北一日遊</p>
     </footer>
+
+    {% block extra_scripts %}{% endblock %}
 
     <script src="{{ url_for('static', filename='javascripts/base.js') }}"></script>
 

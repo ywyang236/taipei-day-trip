@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block extra_scripts %}
+<script src="https://js.tappaysdk.com/sdk/tpdirect/v5.17.0"></script>
+{% endblock %}
+
 {% block content %}
 
 <div class="main">
@@ -11,7 +15,7 @@
             <div class="order-process__itinerary-spot">
                 <div class="order-process__itinerary-spot-delete-button"></div>
                 <div class="order-process__itinerary-spot-left">
-                    <img class="order-process__itinerary-spot-photo" src="https://picsum.photos/250/200">
+                    <img class="order-process__itinerary-spot-photo" src="">
                 </div>
                 <div class="order-process__itinerary-spot-right">
                     <div class="order-process__itinerary-spot-name"></div>
@@ -41,15 +45,17 @@
             <div class="order-process__contact-title">聯絡資訊</div>
             <div class="order-process__contact-name">
                 <div class="order-process__contact-subtitle">聯絡姓名：</div>
-                <input type="text" class="order-process__contact-input">
+                <div class="order-process__contact-name-input-container">
+                    <input type="text" class="order-process__contact-name-input">
+                </div>
             </div>
             <div class="order-process__contact-email">
-                <div class="order-process__contact-subtitle">連絡信箱：</div>
-                <input type="email" class="order-process__contact-input">
+                <div class="order-process__contact-subtitle">電子信箱：</div>
+                <input type="email" class="order-process__contact-email-input">
             </div>
             <div class="order-process__contact-phone">
                 <div class="order-process__contact-subtitle">手機號碼：</div>
-                <input type="text" class="order-process__contact-input">
+                <input type="text" class="order-process__contact-phone-input" maxlength="10">
             </div>
             <div class="order-process__contact-remark">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</div>
         </div>
@@ -60,17 +66,18 @@
             <div class="order-process__checkout-title">信用卡付款資訊</div>
             <div class="order-process__checkout-card">
                 <div class="order-process__checkout-subtitle">卡片號碼：</div>
-                <input type="tel" class="order-process__checkout-input" id="creditCardInput"
-                    placeholder="**** **** **** ****" maxlength="19" pattern="\d{4} \d{4} \d{4} \d{4}">
-
+                <div class="order-process__checkout-input" id="card-number">
+                </div>
             </div>
             <div class="order-process__checkout-card">
                 <div class="order-process__checkout-subtitle">有效日期：</div>
-                <input type="text" placeholder="MM/YY" class="order-process__checkout-input">
+                <div class="order-process__checkout-input" id="card-expiration-date">
+                </div>
             </div>
             <div class="order-process__checkout-card">
                 <div class="order-process__checkout-subtitle">驗證密碼：</div>
-                <input type="text" placeholder="CVV" class="order-process__checkout-input">
+                <div class="order-process__checkout-input" id="card-ccv">
+                </div>
             </div>
         </div>
         <div class="main__separator">
@@ -84,8 +91,6 @@
         </div>
     </div>
 </div>
-
-
 
 {% endblock %}
 

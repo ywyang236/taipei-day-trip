@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="main">
+    <div class="main__container">
+        <div class="order-success__details">
+            <div class="order-success__details__icon">
+                <div class="circle">
+                    <svg class="tick" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <path class="checkmark" fill="none" stroke="#448899" stroke-width="8" d="M2,20 L20,40 L50,10">
+                        </path>
+                    </svg>
+                </div>
+                <div class="thank-you">Thank You</div>
+            </div>
+            <div class="order-success__details__title">
+                <span id="user_name_display"></span><span>，</span><span>您的行程已預定成功，感謝您的訂購！</span>
+            </div>
+            <div class="order-success__details__item">
+                <span>訂單編號：</span><span id="order_number"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% set css_link = url_for('static', filename='styles/thankyou.css') %}
+{% set js_link = url_for('static', filename='javascripts/thankyou.js') %}

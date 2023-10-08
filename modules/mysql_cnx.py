@@ -14,15 +14,11 @@ def open_connection_pool():
         "host": "localhost",
         "database": "taipei_day_trip",
         "charset": "utf8mb4",
-    #    "host" : "localhost",
-    #    "user" : os.getenv('db_user'),
-    #    "password" : os.getenv('db_pw'),
-    #    "database" : "taipei_trip",
     }
 
     connection_pool = mysql.connector.pooling.MySQLConnectionPool(
         pool_name = "mysql_pool",
-        pool_size = 5,
+        pool_size = 10,
         autocommit = True,
         **db_config
     )
