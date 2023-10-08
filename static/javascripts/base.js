@@ -42,7 +42,8 @@ const checkUserLoginStatus = function () {
         fetch('/api/user/auth', {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json"
             }
         })
             .then(response => response.json())
