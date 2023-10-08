@@ -115,6 +115,9 @@ def signin():
 # 使用者狀態系統
 @member_app.route("/api/user/auth", methods=["GET"])
 def user_state():
+    cursor = None  
+    connection = None  
+
     try:
         # 取得 token
         token = request.headers.get("Authorization")
