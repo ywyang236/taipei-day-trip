@@ -2,6 +2,7 @@ from flask import *
 from api.member import member_app
 from api.attraction import attraction_app
 from api.booking import booking_app
+from api.order import order_app
 
 
 app=Flask(__name__)
@@ -13,6 +14,7 @@ app.config["TEMPLATES_AUTO_RELOAD"]=True
 app.register_blueprint(member_app)
 app.register_blueprint(attraction_app)
 app.register_blueprint(booking_app)
+app.register_blueprint(order_app)
 
 
 # Pages
@@ -28,6 +30,9 @@ def booking():
 @app.route("/thankyou")
 def thankyou():
 	return render_template("thankyou.html")
+@app.route("/historical")
+def historical():
+	return render_template("historical.html")
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0", port=3000)

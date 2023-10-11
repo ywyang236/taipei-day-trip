@@ -101,10 +101,6 @@ hr {
     }
 }
 
-.order-process__itinerary-spot-left {}
-
-.order-process__itinerary-spot-photo-container {}
-
 .order-process__itinerary-spot-photo {
     width: 100%;
     height: 100%;
@@ -125,8 +121,6 @@ hr {
         padding: 28px 0;
     }
 }
-
-#order-process__itinerary-spot-photo {}
 
 img {
     overflow-clip-margin: content-box;
@@ -231,24 +225,51 @@ img {
     margin-bottom: 15px;
 }
 
-.order-process__contact-input,
+
+.order-process__contact-name-input,
+.order-process__contact-email-input,
+.order-process__contact-phone-input {
+    width: 200px;
+    height: 38px;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+    font-weight: 500;
+    line-height: 13.3px;
+    font-size: 15.5px;
+    padding: 10px;
+    color: #000000;
+}
+
 .order-process__checkout-input {
     width: 200px;
     height: 38px;
     border: 1px solid #E8E8E8;
     border-radius: 5px;
-    padding: 10px;
     font-size: 16px;
     font-weight: 500;
-    line-height: 13.3px;
     color: #000000;
+    padding-left: 10px;
 }
 
 .order-process__contact-input:focus,
+.order-process__contact-name-input:focus,
+.order-process__contact-email-input:focus,
+.order-process__contact-phone-input:focus,
 .order-process__checkout-input:focus {
     outline: none !important;
     border: 2px solid #448899;
 }
+
+.tappay-field-focus {
+    border-color: #448899;
+    -webkit-box-shadow:
+        inset 0 1px 1px rgba(0, 0, 0, 0),
+        0 0 0 1px #448899;
+    box-shadow:
+        inset 0 1px 1px rgba(0, 0, 0, 0),
+        0 0 0 1px #448899;
+}
+
 
 .order-process__contact-remark {
     color: #666;
@@ -281,7 +302,6 @@ img {
     margin-bottom: 22px;
 }
 
-.order-process__confirmation-text {}
 
 .order-process__confirmation-button {
     padding: 10px 20px;

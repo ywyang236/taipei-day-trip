@@ -14,6 +14,9 @@ let dialogSignupPrompt = document.querySelector('.dialog_signup_prompt');
 // 選取「預約行程」按鈕
 let bookingButton = document.querySelector('.booking_button');
 
+// 選取「歷史訂單」按鈕
+let historicalOrderButton = document.querySelector('.historical_order_button');
+
 // 一般訊息對話框
 let dialogSection = document.querySelector('.dialog_section');
 
@@ -39,7 +42,8 @@ const checkUserLoginStatus = function () {
         fetch('/api/user/auth', {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json"
             }
         })
             .then(response => response.json())
@@ -68,6 +72,21 @@ const checkUserLoginStatus = function () {
 document.addEventListener('DOMContentLoaded', function () {
     checkUserLoginStatus();
 });
+
+// 如果使用者在「預約行程」，則隱藏「預約行程」按鈕，顯示「歷史訂單」按鈕
+const isBookingPage = function () {
+    if (window.location.pathname === '/booking') {
+        bookingButton.style.display = 'none';
+        historicalOrderButton.style.display = 'flex';
+    }
+    if (window.location.pathname === '/thankyou') {
+        bookingButton.style.display = 'none';
+        historicalOrderButton.style.display = 'flex';
+    }
+}
+
+window.addEventListener('DOMContentLoaded', isBookingPage);
+
 
 // 「登入」按鈕的點擊事件
 signinButton.addEventListener('click', function () {
@@ -295,5 +314,10 @@ bookingButton.addEventListener('click', function () {
     } else {
         window.location.href = '/booking';
     }
+});
+
+// 點擊「歷史訂單」按鈕時，頁面跳轉到 historical.html
+historicalOrderButton.addEventListener('click', function () {
+    window.location.href = '/historical';
 });
 

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="main">
+    <div class="main__container">
+        <div class="historical-order__search-order-number">
+            <input type="text" id="orderNumberInput" placeholder="請輸入訂單編號">
+            <button onclick="fetchOrderData()">查詢</button>
+        </div>
+        <div class="historical-order__header">
+            <span>您好，</span><span id="user_name_display"></span><span>，已訂購的行程如下：</span>
+        </div>
+        <div class="historical-order__order-details">
+            <div class="historical-order__overview-container">
+                <div class="historical-order__order-number-container">
+                    <span class="historical-order__order-number-title">訂單編號：</span>
+                    <span class="historical-order__order-number">39f26504-7e58-447d-b84e-24f1b2e0b1dc</span>
+                </div>
+                <div class="historical-order__order-date-container">
+                    <span class="historical-order__order-date-title">訂購日期：</span>
+                    <span class="historical-order__order-date">2023-10-07</span>
+                </div>
+                <div class="historical-order__order-amount-container">
+                    <span class="historical-order__order-amount-title">消費金額：</span>
+                    <span class="historical-order__order-amount">2000</span>
+                </div>
+                <div class="historical-order__order-quantity-container">
+                    <span class="historical-order__order-quantity-title">預約數量：</span>
+                    <span class="historical-order__order-quantity">1</span>
+                </div>
+            </div>
+            <div class="historical-order__spot">
+                <div class="historical-order__spot-left-container">
+                    <img class="historical-order__spot-photo" src="">
+                </div>
+                <div class="historical-order__spot-right-container">
+                    <div class="historical-order__spot-name-container">
+                        <span class="historical-order__spot-name-title">預約景點：</span>
+                        <span class="historical-order__spot-name">台北101</span>
+                    </div>
+                    <div class="historical-order__spot-date-container">
+                        <span class="historical-order__spot-date-title">預約日期：</span>
+                        <span class="historical-order__spot-date">2023-10-09</span>
+                    </div>
+                    <div class="historical-order__spot-time-container">
+                        <span class="historical-order__spot-time-title">預約時段：</span>
+                        <span class="historical-order__spot-time">morning</span>
+                    </div>
+                    <div class="historical-order__spot-price-container">
+                        <span class="historical-order__spot-price-title">行程費用：</span>
+                        <span class="historical-order__spot-price">2000</span>
+                    </div>
+                    <div class="historical-order__spot-address-container">
+                        <span class="historical-order__spot-address-title">預約地點：</span>
+                        <span class="historical-order__spot-address">臺北市信義區信義路5段7號</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% set css_link = url_for('static', filename='styles/historical.css') %}
+{% set js_link = url_for('static', filename='javascripts/historical.js') %}
