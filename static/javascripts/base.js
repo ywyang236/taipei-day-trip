@@ -1,6 +1,6 @@
 // 頁面載入動畫
 window.addEventListener("load", function () {
-    let loadingScreen = document.getElementById("loadingScreen");
+    let loadingScreen = document.querySelector('.loading_screen');
     loadingScreen.style.display = "none";
 });
 
@@ -16,6 +16,9 @@ let bookingButton = document.querySelector('.booking_button');
 
 // 選取「歷史訂單」按鈕
 let historicalOrderButton = document.querySelector('.historical_order_button');
+
+// 選取「會員資料」按鈕
+let memberInfoButton = document.querySelector('.member_info_button');
 
 // 一般訊息對話框
 let dialogSection = document.querySelector('.dialog_section');
@@ -48,15 +51,22 @@ const checkUserLoginStatus = function () {
         })
             .then(response => response.json())
             .then(result => {
+                // 
                 if (!result.error) {
-                    // 顯示登出按鈕，隱藏登入、註冊按鈕
+                    // 顯示登出按鈕，隱藏登入、註冊按鈕、歷史訂單按鈕、會員資料按鈕
                     signoutButton.style.display = 'flex';
                     signinButton.style.display = 'none';
-                } else {
+                    historicalOrderButton.style.display = 'flex';
+                    memberInfoButton.style.display = 'flex';
+                }
+                else {
                     // Token 無效，清除 localStorage 中的 Token
                     localStorage.removeItem('token');
+                    // 顯示登入按鈕，隱藏登出按鈕、歷史訂單按鈕、會員資料按鈕
                     signinButton.style.display = 'flex';
                     signoutButton.style.display = 'none';
+                    historicalOrderButton.style.display = 'none';
+                    memberInfoButton.style.display = 'none';
                 }
             })
             .catch(error => {
@@ -69,24 +79,8 @@ const checkUserLoginStatus = function () {
     }
 };
 
-document.addEventListener('DOMContentLoaded', function () {
-    checkUserLoginStatus();
-});
-
-// 如果使用者在「預約行程」，則隱藏「預約行程」按鈕，顯示「歷史訂單」按鈕
-const isBookingPage = function () {
-    if (window.location.pathname === '/booking') {
-        bookingButton.style.display = 'none';
-        historicalOrderButton.style.display = 'flex';
-    }
-    if (window.location.pathname === '/thankyou') {
-        bookingButton.style.display = 'none';
-        historicalOrderButton.style.display = 'flex';
-    }
-}
-
-window.addEventListener('DOMContentLoaded', isBookingPage);
-
+// 頁面載入時，檢查使用者是否已登入
+checkUserLoginStatus();
 
 // 「登入」按鈕的點擊事件
 signinButton.addEventListener('click', function () {

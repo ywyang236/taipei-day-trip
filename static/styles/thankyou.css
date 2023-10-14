@@ -54,7 +54,6 @@
     font-size: 30px;
     font-weight: 600;
     line-height: 50px;
-    margin: 20px;
 }
 
 .circle {
@@ -114,4 +113,140 @@
     100% {
         stroke-dashoffset: 0;
     }
+}
+
+.thankyou__order-details {
+    max-width: 980px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 31px 0 0 0;
+}
+
+
+.thankyou__overview-container {
+    line-height: normal;
+    border-radius: 5px 5px 0 0;
+    background-color: #448899;
+    color: #fff;
+    padding: 20px;
+}
+
+.thankyou__order-number-container,
+.thankyou__order-date-container,
+.thankyou__order-amount-container,
+.thankyou__order-quantity-container {
+    height: 30px;
+}
+
+.thankyou__spot {
+    background-color: rgb(240, 240, 240);
+    /* border-radius: 0 0 5px 5px; */
+    padding: 20px;
+    line-height: nlorma;
+    font-size: 16px;
+    color: #6e6e6e;
+
+    max-width: 980px;
+    width: 100%;
+    display: grid;
+    gap: 0px 22px;
+    position: relative;
+}
+
+@media (min-width: 1024px) {
+    .thankyou__spot {
+        grid-template-columns: 0.3844fr 1fr;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .thankyou__spot {
+        grid-template-columns: 0.3844fr 1fr;
+    }
+}
+
+@media (max-width:600px) {
+    .thankyou__spot {
+        grid-template-columns: 1fr;
+    }
+}
+
+.thankyou__spot-left-container {}
+
+.thankyou__spot-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.thankyou__spot-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    padding: 0 8px;
+}
+
+@media (max-width:600px) {
+    .thankyou__spot-photo img {
+        padding: 28px 0;
+    }
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.thankyou__spot-right-container {
+    max-width: 692px;
+    width: 100%;
+}
+
+.thankyou__spot-name-container,
+.thankyou__spot-date-container,
+.thankyou__spot-time-container,
+.thankyou__spot-price-container,
+.thankyou__spot-address-container {
+    color: #666;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 13.3px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+
+}
+
+.thankyou__spot-name-title,
+.thankyou__spot-date-title,
+.thankyou__spot-time-title,
+.thankyou__spot-price-title,
+.thankyou__spot-address-title {
+    color: #666;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 13.3px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.thankyou__spot-name,
+.thankyou__spot-date,
+.thankyou__spot-time,
+.thankyou__spot-price,
+.thankyou__spot-address {
+    color: #666;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 13.3px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
 }
