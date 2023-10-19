@@ -3,38 +3,35 @@ let isLoading = false; // 檢查是否正在載入資料
 let currentKeyword = ''; // 存儲目前搜尋的關鍵字
 let results = []; // 存儲所有搜尋到的資料
 
-
 document.addEventListener('DOMContentLoaded', function () {
-    // 輸入時，改變輸入框內文字的顏色
-    const inputArea = document.getElementById('input_area');
+    displayMrtData();
+    fetchAttractions(0); // 預設從第0頁開始載入
+});
 
-    inputArea.addEventListener('input', function () {
-        if (this.value) {
-            this.style.color = 'black';
-        } else {
-            this.style.color = '#757575';
-        }
+// 顯示載入動畫
+function showLoadingAnimation() {
+    const loadingMore = document.getElementById('loading-more');
+    loadingMore.style.display = 'flex';
+}
+
+// 隱藏載入動畫
+function hideLoadingAnimation() {
+    const loadingMore = document.getElementById('loading-more');
+    loadingMore.style.display = 'none';
+}
+
+// 預載入功能
+function preloadImages(arrayOfImages) {
+    arrayOfImages.forEach(imgUrl => {
+        let img = new Image();
+        img.src = imgUrl;
     });
+}
 
-    // 當頁面滾動到最底部時，載入更多資料
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const attractionObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && nextPage !== null) {
-                fetchAttractions(nextPage);
-            }
-        });
-    }, observerOptions);
-
-    const loadMoreDiv = document.createElement('div');
-    loadMoreDiv.className = 'load-more-div';
-    document.body.appendChild(loadMoreDiv);
-    attractionObserver.observe(loadMoreDiv);
+// 輸入時，改變輸入框內文字的顏色
+const inputArea = document.getElementById('input_area');
+inputArea.addEventListener('input', function () {
+    this.style.color = this.value ? 'black' : '#757575';
 });
 
 // 取得捷運站資料
@@ -53,8 +50,6 @@ async function getMrtData() {
 // 顯示捷運站資料
 async function displayMrtData() {
     const listContainer = document.querySelector('#mrt-list-content');
-
-    // listContainer.innerHTML = '';
 
     try {
         const mrtNames = await getMrtData();
@@ -77,9 +72,7 @@ async function displayMrtData() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    displayMrtData();
-});
+
 
 
 // 搜尋捷運站
@@ -120,6 +113,9 @@ async function search() {
 
 // 擷取與關鍵字相關的資料
 function fetchAttractionsByKeyword(url) {
+
+    showLoadingAnimation();
+
     if (isLoading) return;
     isLoading = true;
 
@@ -127,6 +123,7 @@ function fetchAttractionsByKeyword(url) {
         .then(response => response.json())
         .then(data => {
             isLoading = false;
+            hideLoadingAnimation();
 
             if (data.error) {
                 alert(data.message);
@@ -135,6 +132,7 @@ function fetchAttractionsByKeyword(url) {
 
             if (data.data && data.data.length > 0) {
                 renderAttractions(data.data);
+                hideLoadingAnimation();
             } else {
                 // 如果沒有找到結果，顯示相應的提示
                 const noResultsDiv = document.createElement('div');
@@ -147,6 +145,7 @@ function fetchAttractionsByKeyword(url) {
         .catch(error => {
             console.error('Error fetching attractions by keyword:', error);
             alert('伺服器取得資料時發生錯誤，請稍後再試');
+            hideLoadingAnimation();
         });
 }
 
@@ -172,14 +171,11 @@ function moveRight() {
 }
 
 
-// 渲染景點到前端
-document.addEventListener('DOMContentLoaded', function () {
-    fetchAttractions(0);  // 預設從第0頁開始載入
-});
-
 function fetchAttractions(page) {
     if (isLoading) return; // 如果當前正在載入，則直接返回
     isLoading = true;
+
+    showLoadingAnimation();
 
     // 依照是否有關鍵字來建構不同的URL
     let url = `/api/attractions?page=${page}`;
@@ -204,6 +200,9 @@ function fetchAttractions(page) {
         .catch(error => {
             console.error('Error fetching attractions:', error);
             alert('伺服器取得資料時發生錯誤，請稍後再試');
+        })
+        .finally(() => { // 使用 finally 來確保在所有情況下都隱藏載入動畫
+            hideLoadingAnimation();
         });
 }
 
@@ -254,3 +253,21 @@ function renderAttractions(attractions) {
         attractionContainer.appendChild(attractionGrid);
     });
 }
+
+// 當頁面滾動到最底部時，載入更多資料
+const attractionObserver = new IntersectionObserver(entries => {
+    const loadingMoreSection = document.querySelector('.loading_more_section');
+
+    entries.forEach(entry => {
+        if (entry.isIntersecting && nextPage !== null) {
+            fetchAttractions(nextPage);
+        }
+    });
+}, { root: null, rootMargin: '0px', threshold: 0.1 });
+
+const loadMoreDiv = document.createElement('div');
+loadMoreDiv.className = 'load-more-div';
+document.body.appendChild(loadMoreDiv);
+
+attractionObserver.observe(loadMoreDiv);
+

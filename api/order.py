@@ -183,7 +183,6 @@ def get_order(order_number):
     try:
         user_state = jwt_module.decoded_jwt(token)
         user_id = user_state["id"]
-        print(f"解碼成功，取得的 user_id: {user_id}")
 
     except Exception as e:
         print(f"解碼 token 時出錯: {e}")
@@ -216,11 +215,8 @@ def get_order(order_number):
 
         # 如果訂單不存在，回傳錯誤訊息
         if not orders:
-            print(f"根據訂單編號 {order_number}，在資料庫中找不到相對應的訂單")
             return jsonify({"error": True, "message": "找不到訂單"}), 404
-        else:
-            print(f"根據訂單編號 {order_number}，在資料庫中找到的訂單資訊: {orders}")
-            
+   
         # 如果訂單存在，但不屬於該使用者，回傳錯誤訊息
         if orders[0][1] != order_number:
             return jsonify({"error": True, "message": "找不到訂單"}), 404
@@ -269,6 +265,102 @@ def get_order(order_number):
         if connection:
             connection.close()
 
+# GET /api/orders 取得所有訂單資訊
+@order_app.route("/api/user/orders", methods=["GET"])
+def get_user_orders():
+    connection = None
+    cursor = None
 
+    # 取得 token
+    token = request.headers.get("Authorization")
 
+    # 驗證 token 是否存在且格式正確
+    if not token or "Bearer " not in token:
+        return jsonify({"error": True, "message": "尚未登入"}), 403
 
+    token = token.split(" ")[1]
+
+    # 解碼 token 以取得使用者ID
+    try:
+        user_state = jwt_module.decoded_jwt(token)
+        user_id = user_state["id"]
+    except Exception as e:
+        return jsonify({"error": True, "message": "無法取得使用者資訊，請再試一次"}), 403
+
+    # 建立資料庫連線並取得訂單摘要
+    try:
+        connection = connection_pool.get_connection()
+        cursor = connection.cursor()
+
+        cursor.execute("""
+            SELECT 
+                o.order_number, 
+                o.order_time AS payment_date, 
+                o.total_price,
+                COUNT(od.id) AS attraction_count
+            FROM orders o
+            LEFT JOIN order_details od ON o.id = od.order_id
+            WHERE o.members_id = %s
+            GROUP BY o.id
+        """, (user_id,))
+
+        orders = cursor.fetchall()
+        
+        orders_summary = [{
+            "order_number": order[0],
+            "payment_date": order[1],
+            "total_price": order[2],
+            "attraction_count": order[3]
+        } for order in orders]
+        
+        return jsonify({"data": orders_summary}), 200
+
+    except Exception as e:
+        print(f"取得訂單摘要時出錯: {e}")
+        return jsonify({"error": True, "message": "伺服器內部錯誤"}), 500
+
+    finally:
+        if cursor:
+            cursor.close()
+
+        if connection:
+            connection.close()
+
+# GET /api/order/{orderNumber}/payment 取得訂單付款狀態
+@order_app.route("/api/order/<order_number>/payment", methods=["GET"])
+def get_order_payment_status(order_number):
+    connection = None
+    cursor = None
+
+    # Establish a database connection and retrieve the payment status.
+    try:
+        connection = connection_pool.get_connection()
+        cursor = connection.cursor()
+
+        # Execute a query to get the payment status of the given order number.
+        cursor.execute("""
+            SELECT payment_status 
+            FROM orders 
+            WHERE order_number = %s
+        """, (order_number,))
+
+        result = cursor.fetchone()
+
+        # If the order does not exist, return an error message.
+        if not result:
+            return jsonify({"error": True, "message": "Order not found"}), 404
+
+        payment_status = result[0]
+
+        # Return the payment status in the response.
+        return jsonify({"data": {"payment_status": payment_status}}), 200
+
+    except Exception as e:
+        print(f"Error while fetching payment status: {e}")
+        return jsonify({"error": True, "message": "Server internal error"}), 500
+
+    finally:
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.close()

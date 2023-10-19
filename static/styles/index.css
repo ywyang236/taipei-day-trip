@@ -306,18 +306,23 @@
     line-height: 13.3px;
 }
 
-
-#loading-area {
-    width: 100%;
-    height: 150px;
-
-    position: relative;
-
-    display: none;
-}
-
 .load-more-div {
     height: 1px;
     margin-top: -1px;
     visibility: hidden;
+}
+
+
+.loading_more_section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loading-more {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }

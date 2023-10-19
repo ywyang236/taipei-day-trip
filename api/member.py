@@ -170,3 +170,60 @@ def user_state():
             cursor.close()
         if connection:
             connection.close()
+
+# 修改密碼系統
+@member_app.route("/api/user", methods=["PATCH"])
+def change_password():
+    cursor = None  
+    connection = None
+
+    try:
+        token = request.headers.get("Authorization")
+        if not token or "Bearer " not in token:
+            return jsonify({"error": True, "message": "Authorization token is missing or invalid"}), 401
+
+        token = token.split(" ")[1]
+
+        user_data = jwt_module.decoded_jwt(token)
+        user_id = user_data["id"]
+
+        old_password = request.json["old_password"]
+        new_password = request.json["new_password"]
+
+        if not old_password or not new_password:
+            return jsonify({"error": True, "message": "Please provide both old and new passwords"}), 400
+
+        if len(new_password) < 8:
+            return jsonify({"error": True, "message": "New password must be at least 8 characters long"}), 400
+
+        connection = connection_pool.get_connection()
+        cursor = connection.cursor()
+
+        select_query = "SELECT password FROM members WHERE id = %s"
+        cursor.execute(select_query, (user_id,))
+        result = cursor.fetchone()
+
+        if not result:
+            return jsonify({"error": True, "message": "User not found"}), 404
+
+        stored_hashed_password = result[0]
+
+        if not bcrypt.check_password_hash(stored_hashed_password, old_password):
+            return jsonify({"error": True, "message": "Old password is incorrect"}), 400
+
+        hashed_new_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
+
+        update_query = "UPDATE members SET password = %s WHERE id = %s"
+        cursor.execute(update_query, (hashed_new_password, user_id))
+        connection.commit()
+
+        return jsonify({"ok": True, "message": "Password changed successfully"}), 200
+
+    except Exception as e:
+        return jsonify({"error": True, "message": "Server internal error"}), 500
+
+    finally:
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.close()
